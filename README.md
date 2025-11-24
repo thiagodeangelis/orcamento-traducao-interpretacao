@@ -91,7 +91,9 @@ projeto-orcamento/
 ├── orcamento.html            # Página de exibição do orçamento
 │
 ├── css/
-│   └── style.css             # Estilos personalizados
+│   ├── style-interpretacao-traducao.css     # Estilos personalizados para as páginas interpretação e Tradução
+│   ├── style-orcamento.css                  # Estilos personalizados para a página de orçamento
+│   └── style.css                            # Estilos personalizados para o index
 │
 ├── js/
 │   ├── script-interpretacao.js   # Lógica de interpretação

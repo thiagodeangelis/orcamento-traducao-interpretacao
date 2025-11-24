@@ -1,64 +1,116 @@
-// SCRIPT PARA A PÁGINA DE TRADUÇÃO
+// ====================================================
+// SCRIPT PARA CALCULAR ORÇAMENTO DE TRADUÇÃO
+// ====================================================
 
 function calcularOrcamento() {
-    // Pegando os valores dos campos do formulário + comando trim para remover espaços em brancos no começo e fim dos campos
+    
+    // ====================================================
+    //  CAPTURANDO OS DADOS DO FORMULÁRIO
+    // ====================================================
+    
+    // Pegando o título do material e removendo espaços extras
     let tituloMaterial = document.getElementById("titulo-material").value.trim();
+    
+    // Pegando o tipo de material selecionado
     const tipoMaterial = document.getElementById("tipo-material").value;
-    const tempoMinutos = Number(document.getElementById("tempo-minutos").value);
-    const legendagem = document.getElementById("legendagem").checked;
+    
+    // Convertendo o tempo para número
+    const tempoTotalMinutos = Number(document.getElementById("tempo-minutos").value);
+    
+    // Verificando se terá legendagem (true ou false)
+    const possuiLegendagem = document.getElementById("legendagem").checked;
+    
+    // Pegando o tipo de edição
     const tipoEdicao = document.getElementById("tipo-edicao").value;
-    const descricao = document.getElementById("descricao").value.trim();
+    
+    // Pegando a descrição (campo opcional)
+    const descricaoMaterial = document.getElementById("descricao").value.trim();
 
-    // Verificando se todos os campos obrigatórios foram preenchidos
-    if ( tipoMaterial === "" || tempoMinutos === 0 || tipoEdicao === "") {
-        // Mostrando mensagem de erro
-        const toastElement = document.getElementById('msgErro');
-        const toast = new bootstrap.Toast(toastElement);
-        toast.show();
-        return;
+    
+    // ====================================================
+    //  VALIDAÇÃO DOS CAMPOS OBRIGATÓRIOS
+    // ====================================================
+    
+    // Se algum campo obrigatório estiver vazio, mostra erro
+    if (tipoMaterial === "" || tempoTotalMinutos === 0 || tipoEdicao === "") {
+        const toastErro = document.getElementById('msgErro');
+        const mensagemToast = new bootstrap.Toast(toastErro);
+        mensagemToast.show();
+        return; // Para a execução da função
     }
 
-
-    if(tituloMaterial === ""){
-
-        tituloMaterial = "~ Não se aplica ~"
+    
+    // ====================================================
+    //  PREENCHENDO CAMPO NÃO OBRIGATÓRIO
+    // ====================================================
+    
+    // Se o título estiver vazio, coloca "Não se aplica"
+    if (tituloMaterial === "") {
+        tituloMaterial = "~ Não se aplica ~";
     }
     
 
-    // Calculando o valor por minuto
-    let valorMinuto = 0;
+    // ====================================================
+    //  CALCULANDO O VALOR POR MINUTO
+    // ====================================================
+    
+    // Começa com valor zerado
+    let valorPorMinuto = 0;
 
     // Verificando o tipo de material para definir o preço
     if (tipoMaterial === "filme" || tipoMaterial === "documentario" || tipoMaterial === "videobook") {
-        // Filmes, documentários e videoBooks
         
-        if (legendagem === true) {
-            valorMinuto = 96;
+        // Se tiver legendagem, custa R$ 96 por minuto
+        if (possuiLegendagem === true) {
+            valorPorMinuto = 96;
         } else {
-            valorMinuto = 60;
+            // Sem legendagem, custa R$ 60 por minuto
+            valorPorMinuto = 60;
         }
+        
     } else if (tipoMaterial === "propaganda" || tipoMaterial === "programa_tv") {
-        // Propaganda de marcas e programa de TV
-        valorMinuto = 250;
+        // Propaganda e programa de TV custam R$ 250 por minuto
+        valorPorMinuto = 250;
     }
 
-    // Calculando o valor total base
-    const valorTotal = valorMinuto * tempoMinutos;
+    
+    // ====================================================
+    //  CALCULANDO O VALOR TOTAL BASE
+    // ====================================================
+    
+    // Multiplicando o valor por minuto pelo tempo total
+    const valorTotalBase = valorPorMinuto * tempoTotalMinutos;
 
-    // Calculando o direito de imagem (30% do valor total)
-    const porcentagemDireito = 30;
-    const valorDireito = (valorTotal * porcentagemDireito) / 100;
+    
+    // ====================================================
+    //  CALCULANDO O DIREITO DE IMAGEM
+    // ====================================================
+    
+    // Direito de imagem é sempre 30% para tradução
+    const porcentagemDireitoImagem = 30;
+    
+    // Calculando 30% do valor total base
+    const valorDireitoImagem = (valorTotalBase * porcentagemDireitoImagem) / 100;
 
-    // Calculando o subtotal (antes dos impostos)
-    const subtotal = valorTotal + valorDireito;
+    
+    // ====================================================
+    //  CALCULANDO SUBTOTAL E IMPOSTOS
+    // ====================================================
+    
+    // Somando valor base + direito de imagem
+    const subtotal = valorTotalBase + valorDireitoImagem;
 
-    // Calculando os impostos (15,5%)
-    const impostos = subtotal * 0.155;
+    // Calculando 15,5% de impostos sobre o subtotal
+    const valorImpostos = subtotal * 0.155;
 
-    // Calculando o total final
-    const totalFinal = subtotal + impostos;
+    // Somando tudo para o valor final
+    const valorFinalOrcamento = subtotal + valorImpostos;
 
-    // Formatando o nome do tipo de material
+    
+    // ====================================================
+    //  FORMATANDO O TIPO DE MATERIAL
+    // ====================================================
+    
     let tipoMaterialFormatado = "";
     
     if (tipoMaterial === "videobook") {
@@ -73,7 +125,11 @@ function calcularOrcamento() {
         tipoMaterialFormatado = "Documentário";
     }
 
-    // Formatando o tipo de edição
+    
+    // ====================================================
+    //  FORMATANDO O TIPO DE EDIÇÃO
+    // ====================================================
+    
     let tipoEdicaoFormatado = "";
     
     if (tipoEdicao === "simples") {
@@ -82,37 +138,51 @@ function calcularOrcamento() {
         tipoEdicaoFormatado = "Edição Completa";
     }
 
-    // Verificando se tem descrição
+    
+    // ====================================================
+    //  VERIFICANDO A DESCRIÇÃO
+    // ====================================================
+    
     let descricaoFinal = "";
     
-    if (descricao === "") {
+    // Se não tiver descrição, coloca mensagem padrão
+    if (descricaoMaterial === "") {
         descricaoFinal = "Nenhuma descrição fornecida";
     } else {
-        descricaoFinal = descricao;
+        descricaoFinal = descricaoMaterial;
     }
 
-    // Criando a URL para a página de orçamento
-    const url = new URL("orcamento.html", window.location.href);
+    
+    // ====================================================
+    //  PREPARANDO A URL PARA ENVIAR OS DADOS
+    // ====================================================
+    
+    // Criando a URL da página de orçamento
+    const urlOrcamento = new URL("orcamento.html", window.location.href);
     
     // Adicionando o tipo de serviço
-    url.searchParams.append("servico", "traducao");
+    urlOrcamento.searchParams.append("servico", "traducao");
 
     // Adicionando as informações do material
-    url.searchParams.append("tituloMaterial", tituloMaterial);
-    url.searchParams.append("tipoMaterial", tipoMaterialFormatado);
-    url.searchParams.append("tempoMinutos", tempoMinutos);
-    url.searchParams.append("legendagem", legendagem);
-    url.searchParams.append("tipoEdicao", tipoEdicaoFormatado);
-    url.searchParams.append("descricao", descricaoFinal);
+    urlOrcamento.searchParams.append("tituloMaterial", tituloMaterial);
+    urlOrcamento.searchParams.append("tipoMaterial", tipoMaterialFormatado);
+    urlOrcamento.searchParams.append("tempoMinutos", tempoTotalMinutos);
+    urlOrcamento.searchParams.append("legendagem", possuiLegendagem);
+    urlOrcamento.searchParams.append("tipoEdicao", tipoEdicaoFormatado);
+    urlOrcamento.searchParams.append("descricao", descricaoFinal);
 
-    // Adicionando os valores calculados
-    url.searchParams.append("valorMinuto", valorMinuto.toFixed(2));
-    url.searchParams.append("valorTotal", valorTotal.toFixed(2));
-    url.searchParams.append("porcentagemDireito", porcentagemDireito);
-    url.searchParams.append("valorDireito", valorDireito.toFixed(2));
-    url.searchParams.append("impostos", impostos.toFixed(2));
-    url.searchParams.append("totalFinal", totalFinal.toFixed(2));
+    // Adicionando os valores calculados (com 2 casas decimais)
+    urlOrcamento.searchParams.append("valorMinuto", valorPorMinuto.toFixed(2));
+    urlOrcamento.searchParams.append("valorTotal", valorTotalBase.toFixed(2));
+    urlOrcamento.searchParams.append("porcentagemDireito", porcentagemDireitoImagem);
+    urlOrcamento.searchParams.append("valorDireito", valorDireitoImagem.toFixed(2));
+    urlOrcamento.searchParams.append("impostos", valorImpostos.toFixed(2));
+    urlOrcamento.searchParams.append("totalFinal", valorFinalOrcamento.toFixed(2));
 
-    // Indo para a página de orçamento
-    window.location.href = url;
+    
+    // ====================================================
+    //  REDIRECIONANDO PARA A PÁGINA DE ORÇAMENTO
+    // ====================================================
+    
+    window.location.href = urlOrcamento;
 }
