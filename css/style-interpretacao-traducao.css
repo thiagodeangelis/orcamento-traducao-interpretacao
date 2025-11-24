@@ -1,0 +1,15 @@
+.container {
+
+    max-width: 800px;
+}
+
+.icone {
+
+    width: 60px; 
+    height: 60px;
+}
+
+.msg-erro {
+
+    z-index: 9999;
+}

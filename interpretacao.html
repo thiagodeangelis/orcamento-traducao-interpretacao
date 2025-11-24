@@ -1,11 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interpretação</title>
+    <title>Orçamento de Interpretação</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--Bootstrap icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!--CSS Externo-->
+    <link rel="stylesheet" href="css/style-interpretacao-traducao.css">    
+   
 </head>
-<body>
-    <h1>Página de Interpretação</h1>
+
+<body class="bg-light">
+
+    <div class="container py-5">
+
+        <div class="d-flex justify-content-center align-items-center mb-4"> <!-- cabeçalho -->
+            <div class="icone rounded-3 d-flex align-items-center justify-content-center me-3 bg-primary-subtle text-primary">
+                <i id="icone-servico" class="bi bi-mic fs-2"></i>
+            </div>
+            <div>
+                <h4 id="titulo-servico" class="mb-0 fw-bold text-dark">Orçamento de Interpretação</h4>
+                <small class="text-muted">Preencha os dados do material a ser interpretado</small>
+            </div>
+        </div>
+
+        <div class="mb-3"> <!-- botão voltar -->
+            <a href="index.html" class="text-decoration-none text-primary fw-semibold">
+                <i class="bi bi-arrow-left me-1"></i> Voltar
+            </a>
+        </div>
+
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white"> <!-- bg do form -->
+            <div class="card-body">
+
+                <form id="formInterpretacao"> <!-- form -->
+
+                    <div class="mb-3">
+                        <label for="titulo-material" class="form-label fw-semibold text-secondary">Nome do Evento</label>
+                        <input type="text" class="form-control py-2" id="titulo-material"
+                            placeholder="Ex: Conferência Internacional de Tecnologia">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="tipoEvento" class="form-label fw-semibold text-secondary">Tipo de Evento *</label>
+                            <select id="tipoEvento" class="form-select py-2" required>
+                                <option value="" selected disabled>Selecione...</option>
+                                <option>Jurídico</option>
+                                <option>Educação</option>
+                                <option>Artístico/Cultural</option>
+                                <option>Vídeo Conferência</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="tempo-minutos" class="form-label fw-semibold text-secondary">Tempo (minutos) *</label>
+                            <input type="number" class="form-control py-2" id="tempo-minutos" value="1" min="1" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold text-secondary" for="enderecoEvento">Endereço</label>
+                        <input id="enderecoEvento" type="text" class="form-control py-2"
+                            placeholder="Ex: Rua Eliseu Uchoa Becco, 600 - Fortaleza, CE">
+                    </div>
+
+                    <!-- Toggle Switch para Gravação -->
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="form-check form-switch ms-2">
+                            <input class="form-check-input" type="checkbox" id="gravadoSwitch">
+                            <label class="form-check-label fw-semibold text-dark" for="gravadoSwitch">
+                                O evento será gravado? (acréscimo de 10% por direito de imagem)
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Descrição (Opcional) -->
+                    <div class="mb-4">
+                        <label for="descricao" class="form-label fw-semibold text-secondary">Descrição (Opcional)</label>
+                        <textarea class="form-control" id="descricao" rows="3" placeholder="Descreva detalhes adicionais sobre o evento..."></textarea>
+                    </div>
+
+                    <!-- Botão de Ação -->
+                    <button id="btnCalcular" type="button" onclick="calcularOrcamento()"
+                        class="btn btn-primary w-100 py-2 fw-bold rounded-3">
+                        Calcular Orçamento
+                    </button>
+
+                </form>
+
+                
+
+                <!-- Msg de Campos Obrigatórios -->
+                <div class="msg-erro position-fixed bottom-0 end-0 p-3">
+                    <div id="msgErro" class="toast text-bg-danger border-0" role="alert">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                Preencha todos os campos obrigatórios antes de calcular o orçamento.
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                        </div>
+                    </div>
+                </div> 
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script da Interpretação -->
+    <script src="js/script-interpretacao.js"></script>
 </body>
+
 </html>
