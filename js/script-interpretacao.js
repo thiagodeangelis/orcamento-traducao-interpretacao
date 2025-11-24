@@ -2,19 +2,36 @@
 
 function calcularOrcamento() {
     // Pegando os valores dos campos do formulário
-    const nomeEvento = document.getElementById("titulo-material").value.trim();
+    let nomeEvento = document.getElementById("titulo-material").value.trim();
     const tipoEvento = document.getElementById("tipoEvento").value;
     const tempoEvento = Number(document.getElementById("tempo-minutos").value);
-    const endereco = document.getElementById("enderecoEvento").value.trim();
+    let endereco = document.getElementById("enderecoEvento").value.trim();
     const gravado = document.getElementById("gravadoSwitch").checked;
 
-    // Verificando se todos os campos foram preenchidos
-    if (nomeEvento === "" || tipoEvento === "" || tempoEvento === 0 || endereco === "") {
+    // Verificando se os campos obrigatórios foram preenchidos
+    if ( tipoEvento === "" || tempoEvento === 0 ) {
         // Mostrando mensagem de erro
-        const toastElement = document.getElementById('toastErro');
+        const toastElement = document.getElementById('msgErro');
         const toast = new bootstrap.Toast(toastElement);
         toast.show();
         return;
+    }
+
+
+    //Deixei os campos nomeEvento e endereco não obrigatórios para deixar o usuário a vontade de calcular orçamento
+
+    //Fazendo if's para aparecer no preenchimento do orçamento caso os campos nomeEvento e endereco estejam vazios
+
+    if(nomeEvento === ""){
+
+        nomeEvento = "~ Não se aplica ~";
+        
+    }
+
+    if(endereco === ""){
+
+        endereco = "~ Não se aplica ~";
+        
     }
 
     // Calculando o valor da hora
@@ -44,10 +61,10 @@ function calcularOrcamento() {
     
     // Se o evento for gravado, adiciona 10%
     if (gravado === true) {
-        porcentagemDireito = 10;
+        porcentagemDireito = 0.1;
     }
     
-    const valorDireito = (totalHoras * porcentagemDireito) / 100;
+    const valorDireito = totalHoras * porcentagemDireito
 
     // Calculando o subtotal (antes dos impostos)
     const subtotal = totalHoras + valorDireito;

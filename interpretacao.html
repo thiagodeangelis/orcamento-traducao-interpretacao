@@ -42,9 +42,9 @@
                 <form id="formInterpretacao"> <!-- form -->
 
                     <div class="mb-3">
-                        <label for="titulo-material" class="form-label fw-semibold text-secondary">Nome do Evento *</label>
+                        <label for="titulo-material" class="form-label fw-semibold text-secondary">Nome do Evento</label>
                         <input type="text" class="form-control py-2" id="titulo-material"
-                            placeholder="Ex: Conferência Internacional de Tecnologia" required>
+                            placeholder="Ex: Conferência Internacional de Tecnologia">
                     </div>
 
                     <div class="row">
@@ -65,9 +65,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-semibold text-secondary" for="enderecoEvento">Endereço *</label>
+                        <label class="form-label fw-semibold text-secondary" for="enderecoEvento">Endereço</label>
                         <input id="enderecoEvento" type="text" class="form-control py-2"
-                            placeholder="Ex: Rua Eliseu Uchoa Becco, 600 - Fortaleza, CE" required>
+                            placeholder="Ex: Rua Eliseu Uchoa Becco, 600 - Fortaleza, CE">
                     </div>
 
                     <!-- Toggle Switch para Gravação -->
@@ -94,17 +94,11 @@
 
                 </form>
 
-                <!-- Área de Resultado (Oculta inicialmente) -->
-                <div id="resultado" class="mt-4 p-3 bg-light rounded-3 border d-none">
-                    <h5 class="fw-bold text-primary mb-3">Resumo do Orçamento</h5>
-                    <ul class="list-unstyled mb-0 text-secondary" id="lista-resultados">
-                        <!-- JavaScript irá preencher aqui -->
-                    </ul>
-                </div>
+                
 
-                <!-- Toast de Erro -->
+                <!-- Msg de Campos Obrigatórios -->
                 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
-                    <div id="toastErro" class="toast text-bg-danger border-0" role="alert">
+                    <div id="msgErro" class="toast text-bg-danger border-0" role="alert">
                         <div class="d-flex">
                             <div class="toast-body">
                                 Preencha todos os campos obrigatórios antes de calcular o orçamento.
