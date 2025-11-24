@@ -1,7 +1,7 @@
 // SCRIPT PARA A PÁGINA DE INTERPRETAÇÃO
 
 function calcularOrcamento() {
-    // Pegando os valores dos campos do formulário
+    // Pegando os valores dos campos do formulário + comando trim para remover espaços em brancos no começo e fim dos campos
     let nomeEvento = document.getElementById("titulo-material").value.trim();
     const tipoEvento = document.getElementById("tipoEvento").value;
     const tempoEvento = Number(document.getElementById("tempo-minutos").value);

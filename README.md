@@ -1,151 +1,295 @@
-# 📊 Orçamento de Tradução e Interpretação em Libras  
-Aplicação web desenvolvida para gerar orçamentos completos de serviços de **Tradução** e **Interpretação em Libras**, com base em regras profissionais de cálculo e cenários reais de prestação de serviços.
+# 📊 Sistema de Orçamento - Tradução e Interpretação em Libras
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-blue?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Frontend-HTML%20%7C%20CSS%20%7C%20Bootstrap%20%7C%20JS-orange?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Status-Concluído-success?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+  <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white"/>
 </p>
 
 ---
 
-## 🚀 Visão Geral
+## 📋 Sobre o Projeto
 
-Este projeto foi desenvolvido como parte de um trabalho prático do curso de **Desenvolvimento Web**, simulando uma solução profissional utilizada em empresas que prestam serviços de tradução e interpretação.  
-A aplicação oferece uma experiência simples, intuitiva e robusta para gerar valores detalhados de orçamento com base nas informações fornecidas pelo usuário.
+Sistema web desenvolvido para **automatizar o cálculo de orçamentos** de serviços de **Tradução** e **Interpretação em Libras**. A aplicação foi criada para atender empresas que prestam esses serviços, facilitando a geração de propostas comerciais precisas e profissionais.
 
-O sistema contempla duas modalidades principais:
-
-- **Interpretação em Libras**
-- **Tradução de Materiais Audiovisuais**
-
-Cada categoria possui regras específicas de cálculo envolvendo tempo, quantidade de profissionais, direitos de imagem e impostos.
+O projeto implementa **regras de negócio reais** utilizadas no mercado de acessibilidade e inclusão, considerando fatores como:
+- Tempo de serviço
+- Quantidade de profissionais necessários
+- Direitos de imagem
+- Impostos e taxas
 
 ---
 
-## 🖥️ Demonstração
-*Adicione aqui um print da interface ou link para GitHub Pages quando publicar.*
+## 🎯 Funcionalidades
 
----
+### ✅ Página Inicial
+- Seleção clara entre **Interpretação** ou **Tradução**
+- Interface amigável e responsiva
+- Design moderno com Bootstrap 5
 
-## 📌 Funcionalidades Principais
+### ✅ Orçamento de Interpretação
+**Dados coletados:**
+- Nome do evento (opcional)
+- Tipo de evento (Jurídico, Educação, Artístico/Cultural, Vídeo Conferência)
+- Tempo do evento (minutos)
+- Endereço (opcional)
+- Se será gravado (checkbox)
 
-### ✔ Seleção de serviço
-- Escolha entre **Interpretação** ou **Tradução** diretamente na página inicial.
+**Cálculos automáticos:**
+- ✔ Valor por hora: R$ 144,00 (eventos padrão) ou R$ 192,00 (artístico/cultural)
+- ✔ Quantidade de intérpretes: 1 (até 60min) ou 2 (61-360min)
+- ✔ Acréscimo de direito de imagem: 10% (se gravado)
+- ✔ Impostos: 15,5% sobre o subtotal
+- ✔ **Total final detalhado**
 
-### ✔ Formulários dinâmicos
-- Campos específicos para cada modalidade.
-- Layout limpo, responsivo e acessível.
-
-### ✔ Cálculo automático do orçamento
-Baseado nas regras do projeto:
-- Tempo total  
-- Quantidade de profissionais  
-- Valor por hora ou minuto  
-- Direito de imagem (% adicional)  
-- Imposto descontado (15,5%)  
-- Valor final detalhado  
-
-### ✔ Exibição completa dos resultados
-- Painel de cálculo com todos os valores utilizados.
-- Perfeito para fins administrativos ou apresentação ao cliente.
-
----
-
-## 🧮 Regras de Cálculo
-
-### 🟦 **1. Interpretação**
-
-#### 📥 Dados solicitados:
-- Nome do evento  
-- Tipo (Jurídico, Educação, Cultural/Artístico, Videoconferência)  
-- Tempo total  
-- Evento será gravado? (Sim/Não)  
-- Endereço  
-
-#### 🧠 Regras:
-##### **Valor da Hora**
-- Até **60 min** → 1 profissional → R$ 144/h  
-- Entre **61 e 360 min** → 2 profissionais → R$ 144/h cada  
-- Eventos **Artístico-Culturais** → R$ 192/h por profissional  
-
-##### **Direito de Imagem**
-Se houver gravação: acréscimo = 10% do valor total
-
-
-
-##### **Saídas da aplicação**
-- Valor da hora por intérprete  
-- Quantidade de intérpretes  
-- Tempo total em horas  
-- Valor total das horas  
-- Porcentagem adicional (10%)  
-- Total final  
-- Impostos (15,5%)  
-
----
-
-### 🟦 **2. Tradução**
-
-#### 📥 Dados solicitados:
-- Título do material  
-- Tipo (VideoBook, TV, Propaganda, Filme, Documentário)  
-- Tempo total em minutos  
-- Possui legendagem?  
-- Tipo de edição (Simples / Completa)  
+### ✅ Orçamento de Tradução
+**Dados coletados:**
+- Título do material (opcional)
+- Tipo de material (VideoBook, TV, Propaganda, Filme, Documentário)
+- Tempo total (minutos)
+- Possui legendagem? (checkbox)
+- Tipo de edição (Simples/Completa)
 - Descrição (opcional)
 
-#### 🧠 Regras:
-##### **Valor por minuto**
-- Filmes, documentários e videobooks → **R$ 60/min**  
-- Caso haja legendagem → **R$ 96/min**  
-- Propaganda e similares → **R$ 250/min**
+**Cálculos automáticos:**
+- ✔ Valor por minuto: R$ 60,00 (sem legenda) / R$ 96,00 (com legenda) / R$ 250,00 (propaganda/TV)
+- ✔ Acréscimo de direito de imagem: 30%
+- ✔ Impostos: 15,5% sobre o subtotal
+- ✔ **Total final detalhado**
 
-##### **Direito de Imagem**
-Acrescentar:
-30% do valor total
-
-
-##### **Saídas**
-- Valor por minuto  
-- Tempo total  
-- Valor base  
-- Acréscimo de 30%  
-- Total final  
-- Impostos (15,5%)  
+### ✅ Página de Orçamento
+- Exibição profissional dos dados
+- Conversão automática de minutos para "Xh Ymin"
+- Campos não preenchidos aparecem como "~ Não se aplica ~"
+- Botão de impressão otimizado
+- Layout responsivo e pronto para apresentação
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **HTML5**
-- **CSS3**
-- **Bootstrap 5**
-- **JavaScript**
-- Design responsivo e acessível
+| Tecnologia | Versão | Uso |
+|------------|--------|-----|
+| HTML5 | - | Estrutura das páginas |
+| CSS3 | - | Estilização personalizada |
+| JavaScript | ES6 | Lógica de cálculo e validação |
+| Bootstrap | 5.3.3 | Framework CSS responsivo |
+| Bootstrap Icons | 1.10.5 | Ícones da interface |
 
 ---
 
 ## 📁 Estrutura do Projeto
 
-/
-|-- index.html
-|-- interpretacao.html
-|-- traducao.html
-|-- css/
-| └── style.css
-|-- js/
-| └── script.js
-|-- assets/
-└── imagens, logos...
+```
+projeto-orcamento/
+│
+├── index.html                 # Página inicial
+├── interpretacao.html         # Formulário de interpretação
+├── traducao.html             # Formulário de tradução
+├── orcamento.html            # Página de exibição do orçamento
+│
+├── css/
+│   └── style.css             # Estilos personalizados
+│
+├── js/
+│   ├── script-interpretacao.js   # Lógica de interpretação
+│   └── script-traducao.js        # Lógica de tradução
+│
+└── README.md                 # Documentação do projeto
+```
+
+---
+
+## 🚀 Como Executar o Projeto
+
+### Pré-requisitos
+- Navegador web moderno (Chrome, Firefox, Edge, Safari)
+- Nenhuma instalação adicional necessária!
+
+### Passo a Passo
+
+1. **Clone o repositório**
+```bash
+git clone https://github.com/thiagodeangelis/orcamento-traducao-interpretacao.git
+```
+
+2. **Navegue até a pasta**
+```bash
+cd orcamento-traducao-interpretacao
+```
+
+3. **Abra o arquivo index.html**
+- Clique duas vezes no arquivo `index.html`
+- Ou abra com o seu navegador preferido
+
+4. **Pronto!** 🎉
+- O sistema está rodando localmente
+
+---
+
+## 📊 Regras de Cálculo
+
+### 🎤 Interpretação
+
+#### Valor da Hora
+```
+Evento padrão:           R$ 144,00/hora
+Artístico/Cultural:      R$ 192,00/hora
+```
+
+#### Quantidade de Intérpretes
+```
+0 - 60 minutos:         1 intérprete
+61 - 360 minutos:       2 intérpretes
+```
+
+#### Direito de Imagem
+```
+Evento não gravado:     0%
+Evento gravado:         +10%
+```
+
+#### Fórmula Final
+```
+Subtotal = (Valor da Hora × Qtd. Intérpretes × Tempo em Horas) + Direito de Imagem
+Impostos = Subtotal × 15,5%
+Total = Subtotal + Impostos
+```
+
+---
+
+### 🎬 Tradução
+
+#### Valor por Minuto
+```
+Filme/Documentário/VideoBook (sem legenda):    R$ 60,00/min
+Filme/Documentário/VideoBook (com legenda):    R$ 96,00/min
+Propaganda/Programa de TV:                     R$ 250,00/min
+```
+
+#### Direito de Imagem
+```
+Sempre:                 +30%
+```
+
+#### Fórmula Final
+```
+Valor Base = Valor por Minuto × Tempo Total
+Direito de Imagem = Valor Base × 30%
+Subtotal = Valor Base + Direito de Imagem
+Impostos = Subtotal × 15,5%
+Total = Subtotal + Impostos
+```
+
+---
+
+## 💡 Destaques do Código
+
+### ✨ Código Limpo e Comentado
+- Variáveis com nomes sugestivos
+- Comentários explicativos em cada etapa
+- Organização clara por seções
+
+### ✨ Validação de Formulários
+- Toast do Bootstrap para mensagens de erro
+- Verificação de campos obrigatórios
+- Feedback visual imediato
+
+### ✨ Comunicação entre Páginas
+- Uso de URL Parameters (GET)
+- Dados preservados durante a navegação
+- Fácil compartilhamento de orçamentos
+
+### ✨ Design Responsivo
+- Adaptável a mobile, tablet e desktop
+- Modo de impressão otimizado
+- Interface profissional e moderna
+
+---
+
+## 📱 Responsividade
+
+O sistema foi desenvolvido com **Mobile First** e funciona perfeitamente em:
+
+- 📱 Smartphones (320px+)
+- 📱 Tablets (768px+)
+- 💻 Notebooks (1024px+)
+- 🖥️ Desktops (1440px+)
+
+---
+
+## 🖨️ Modo de Impressão
+
+A página de orçamento possui:
+- ✅ Layout otimizado para A4
+- ✅ Remoção de elementos desnecessários
+- ✅ Cores ajustadas para impressão
+- ✅ Espaçamento reduzido
+
+---
+
+## 🎓 Conceitos Aplicados
+
+### JavaScript
+- ✔ Manipulação do DOM
+- ✔ Validação de formulários
+- ✔ Cálculos matemáticos
+- ✔ URL Parameters
+- ✔ Estruturas condicionais (if/else)
+- ✔ Funções
+
+### HTML/CSS
+- ✔ Formulários semânticos
+- ✔ Flexbox e Grid
+- ✔ Media Queries
+- ✔ Bootstrap 5
+
+---
+
+## 📝 Melhorias Futuras
+
+- [ ] Adicionar banco de dados para histórico
+- [ ] Implementar geração de PDF
+- [ ] Criar sistema de login
+- [ ] Adicionar edição de orçamentos
+- [ ] Implementar envio por e-mail
+- [ ] Adicionar mais tipos de serviços
+
+---
+
+## 👨‍💻 Autores
+
+**Thiago De Angelis**
+- GitHub: [@thiagodeangelis](https://github.com/thiagodeangelis)
+- LinkedIn: [Thiago De Angelis](https://www.linkedin.com/in/thiagodeangelis/)
+- E-mail: thiagodevangelis@gmail.com
+
+---
+
+**Diego Manoel**
+- GitHub: [@diegommcosta](https://github.com/diegommcosta)
+- LinkedIn: [Diego Manoel](https://www.linkedin.com/in/diego-manoel/)
+- E-mail: diegomanoelmcosta@gmail.com
 
 
 ---
 
-## ▶️ Como Executar
+## 📄 Licença
 
-1. Clone este repositório:
-```bash
-git clone https://github.com/thiagodeangelis/orcamento-traducao-interpretacao
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-cd orcamento-traducao-interpretacao
+---
 
+## 🙏 Agradecimentos
+
+- Bootstrap pela framework CSS
+- Bootstrap Icons pelos ícones
+- Comunidade de desenvolvedores
+
+---
+
+<p align="center">
+  Feito com ❤️ e ☕
+</p>

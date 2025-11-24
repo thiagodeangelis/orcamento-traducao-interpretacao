@@ -80,6 +80,13 @@
             text-align: right;
         }
 
+        /* Estilo especial para "Não se aplica" */
+        .info-value.nao-aplica {
+            color: #6c757d;
+            font-style: italic;
+            text-align: right;
+        }
+
         .calculo-section {
             background: #fff;
             border: 2px solid #0d6efd;
@@ -216,7 +223,16 @@
 
         // Função para criar item de informação
         function criarItem(label, valor) {
-            return '<div class="info-item"><span class="info-label">' + label + '</span><span class="info-value">' + valor + '</span></div>';
+            let htmlItem = '';
+            
+            if (valor.includes("~ Não se aplica ~")) {
+                // Quando for "Não se aplica", mostra o label e o valor centralizado
+                htmlItem = '<div class="info-item"><span class="info-label">' + label + '</span><span class="info-value nao-aplica">' + valor + '</span></div>';
+            } else {
+                htmlItem = '<div class="info-item"><span class="info-label">' + label + '</span><span class="info-value">' + valor + '</span></div>';
+            }
+            
+            return htmlItem;
         }
 
         // Função para converter minutos em horas e minutos

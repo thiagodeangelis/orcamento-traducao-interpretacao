@@ -1,8 +1,8 @@
 // SCRIPT PARA A PÁGINA DE TRADUÇÃO
 
 function calcularOrcamento() {
-    // Pegando os valores dos campos do formulário
-    const tituloMaterial = document.getElementById("titulo-material").value.trim();
+    // Pegando os valores dos campos do formulário + comando trim para remover espaços em brancos no começo e fim dos campos
+    let tituloMaterial = document.getElementById("titulo-material").value.trim();
     const tipoMaterial = document.getElementById("tipo-material").value;
     const tempoMinutos = Number(document.getElementById("tempo-minutos").value);
     const legendagem = document.getElementById("legendagem").checked;
@@ -10,13 +10,20 @@ function calcularOrcamento() {
     const descricao = document.getElementById("descricao").value.trim();
 
     // Verificando se todos os campos obrigatórios foram preenchidos
-    if (tituloMaterial === "" || tipoMaterial === "" || tempoMinutos === 0 || tipoEdicao === "") {
+    if ( tipoMaterial === "" || tempoMinutos === 0 || tipoEdicao === "") {
         // Mostrando mensagem de erro
         const toastElement = document.getElementById('msgErro');
         const toast = new bootstrap.Toast(toastElement);
         toast.show();
         return;
     }
+
+
+    if(tituloMaterial === ""){
+
+        tituloMaterial = "~ Não se aplica ~"
+    }
+    
 
     // Calculando o valor por minuto
     let valorMinuto = 0;
